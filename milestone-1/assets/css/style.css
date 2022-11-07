@@ -22,40 +22,27 @@ body {
   background-color: bisque;
 }
 
-/* ? Backgroud */
-#myBackground {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: -1;
-}
-
-.topBack {
-  height: 15%;
-  background-color: var(--color-primary);
-}
-
-.bottomBack {
-  height: 85%;
-  background-color: var(--color-secondary);
-}
-
+/* ? Main wrapper */
 .main-wrapper {
   min-height: 100vh;
+  background: linear-gradient(to bottom,
+      var(--color-primary) 0%,
+      var(--color-primary) 15%,
+      var(--color-secondary) 15%,
+      var(--color-secondary) 100%);
 }
 
 /* ? app */
 #app {
-  min-height: 95vh;
+  height: 95vh;
   min-width: 1000px;
   width: 80%;
 }
 
 /* ? Contacts */
 #contacts {
-  width: 40%;
+  width: 35%;
+  background-color: var(--color-white);
 }
 
 /* ? Account */
@@ -65,7 +52,6 @@ body {
 }
 
 /* todo left */
-
 .img-profile img {
   height: 50px;
   border-radius: 50%;
@@ -105,18 +91,18 @@ body {
   transition: .3s;
 }
 
-.icon-not:hover{
-  background-color:#575656;
+.icon-not:hover {
+  background-color: #575656;
 }
 
-.text-not > span{
+.text-not>span {
   color: #575656;
   cursor: pointer;
 }
 
 /* ? ChatViewer */
 #chatViewer {
-  width: 60%;
+  width: 65%;
 }
 
 /* ? SearchChat */
@@ -126,23 +112,59 @@ body {
 }
 
 /* * searchBar */
-
 .input-group-prepend,
-.input-group-text{
-  /* ! rivedere */
-  height: 40px;
+.input-group-text {
   transition: .3s;
   cursor: pointer;
+  background-color: var(--color-white);
+  /* !  */
+  height: 40px;
 }
 
-.input-group-text:hover{
+.input-group-text:hover {
   background-color: #575656;
   color: var(--color-white);
 }
 
-
 /* ? recentChats */
 .recentChats {
-  height: 500px;
   background-color: var(--color-white);
+  overflow-y: auto;
+}
+
+.recentChats .chatsWrapper {
+  list-style: none;
+  padding: 0;
+}
+
+.recentChats .chat {
+  padding: .5rem;
+  position: relative;
+  color: #949292;
+  transition: .3s;
+  cursor: pointer;
+  padding: .5rem 1rem;
+}
+
+.chat:hover {
+  background-color: #E9EBEB;
+}
+
+.chat .img-profile {
+  margin-right: .8rem;
+}
+
+.chat-text h3 {
+  font-size: 1.1rem;
+  color: #212529;
+}
+
+.chat-text p {
+  font-size: .85rem;
+}
+
+.lastMexTime {
+  font-size: .7rem;
+  position: absolute;
+  right: 1rem;
 }
