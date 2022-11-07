@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+
+/* * General */
+
+:root {
+  --color-primary: #009688;
+  --color-secondary: #DCDBD2;
+  --color-default: #EAEAEA;
+  --color-blue: #8EDAFC;
+  --color-green: #D5F9BA;
+  --color-white: #FAFAFA;
+  --color-text: #B1B1B1;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+/* * utilities */
+.debug {
+  border: 1px solid firebrick;
+  background-color: bisque;
+}
+
+/* ? Main wrapper */
+.main-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(to bottom,
+      var(--color-primary) 0%,
+      var(--color-primary) 15%,
+      var(--color-secondary) 15%,
+      var(--color-secondary) 100%);
+}
+
+/* ? app */
+#app {
+  height: 95vh;
+  min-width: 1000px;
+  width: 80%;
+}
+
+/* ? Contacts */
+#contacts {
+  width: 35%;
+  background-color: var(--color-white);
+  border-right: 1px solid #B1B1B1;
+}
+
+/* ? Account */
+#account,
+.topChatViewer {
+  padding: .6rem;
+  background-color: var(--color-default);
+}
+
+/* todo left */
+.img-profile img {
+  height: 50px;
+  border-radius: 50%;
+}
+
+/* todo right */
+.right-acc,
+.chat-options {
+  margin-right: 10px;
+  font-size: 1.1rem;
+  color: var(--color-text);
+}
+
+.right-acc i,
+.chat-options i {
+  cursor: pointer;
+  padding: .4rem;
+  transition: .3s;
+}
+
+.right-acc i:hover,
+.chat-options i:hover {
+  color: var(--color-primary);
+}
+
+/* ? Notification */
+.notification {
+  background-color: var(--color-blue);
+  padding: 1.2rem;
+}
+
+.icon-not {
+  background-color: #F2FBFF;
+  font-size: 1.5rem;
+  color: var(--color-blue);
+  padding: .8rem 1rem;
+  border-radius: 50%;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.icon-not:hover {
+  background-color: var(--color-primary);
+}
+
+.text-not>span {
+  color: #575656;
+  cursor: pointer;
+}
+
+/* ? SearchChat */
+.searchChat {
+  background-color: var(--color-white);
+  padding: .5rem;
+}
+
+/* * searchBar */
+.input-group-prepend,
+.input-group-text {
+  transition: .3s;
+  cursor: pointer;
+  background-color: var(--color-white);
+  /* !  */
+  height: 40px;
+}
+
+.input-group-text:hover {
+  background-color: #575656;
+  color: var(--color-white);
+}
+
+/* ? recentChats */
+.recentChats {
+  background-color: var(--color-white);
+  overflow-y: auto;
+}
+
+.recentChats .chatsWrapper {
+  list-style: none;
+  padding: 0;
+}
+
+.recentChats .chat {
+  padding: .5rem;
+  position: relative;
+  color: #949292;
+  transition: .3s;
+  cursor: pointer;
+  padding: .5rem 1rem;
+}
+
+.chat:hover {
+  background-color: #E9EBEB;
+}
+
+.chat.active{
+  background-color: #E9EBEB;
+}
+
+.chat .img-profile {
+  margin-right: .8rem;
+}
+
+.chat-text h3 {
+  font-size: 1.1rem;
+  color: #212529;
+}
+
+.chat-text p {
+  font-size: .85rem;
+  padding-right: 2rem;
+  text-overflow:clip;
+}
+
+.lastMexTime {
+  font-size: .7rem;
+  position: absolute;
+  right: 1rem;
+}
+
+/* ? ChatViewer */
+#chatViewer {
+  width: 65%;
+}
+
+#chatViewer .chat-name h3 {
+  font-size: 1rem;
+}
+
+#chatViewer .chat-name span {
+  font-size: .85rem;
+  color: #575656;
+}
+
+/* ? chatMessages */
+.chatMessages {
+  background-image: url('../img/mine.jpg');
+  padding: 2rem;
+  overflow-y: auto;
+
+  /* ! */
+  height: calc(100% - 135.6px);
+}
+
+/* ? bottomChatViewer */
+.bottomChatViewer {
+  padding: .65rem 1.2rem;
+  background-color: #F3EEEA;
+}
+
+.bottomChatViewer i {
+  font-size: 1.5rem;
+  color: #6B7376;
+  cursor: pointer;
+  margin: .4rem;
+  transition: .3s;
+}
+
+.bottomChatViewer i:hover {
+  color: var(--color-primary);
+
+}
+
+.inputMessage {
+  width: 100%;
+}
+
+.inputMessage input {
+  width: 95%;
+  border: none;
+  padding: .7rem .5rem;
+  border-radius: .5rem;
+}
+
+.message-row {
+  width: 100%;
+  display: inline-block;
+  padding: .5rem 0;
+}
+
+.message {
+  max-width: 400px;
+  min-width: 200px;
+  padding: 1rem;
+  border-radius: 1rem;
+  position: relative;
+  display: inline-block;
+}
+
+.message .text{
+  margin: 0;
+  padding-bottom: .3rem;
+  padding-right: 2rem;
+}
+
+.message .time {
+  position: absolute;
+  font-size: .7rem;
+  bottom: .4rem;
+  right: .7rem;
+}
+
+.message.sent {
+  background-color: var(--color-green);
+  float: right;
+}
+
+.message.received {
+  background-color: #ffffff;
+  float: left;
+}

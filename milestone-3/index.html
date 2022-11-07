@@ -91,17 +91,17 @@
           <!-- ? ChatsWrapper -->
           <ul class="chatsWrapper m-0">
             <!-- ? Chat -->
-            <li v-for="(contact, i) in contacts" class="chat d-flex align-items-center"
-              :class=" {'active' : currentChat === i} " @click.stop="currentChat = i">
+            <li v-for="(contact, i) in contacts" class="chat d-flex align-items-center" :class=" {'active' : currentChat === i} " 
+            @click.stop="currentChat = i">
               <div class="img-profile">
                 <img :src=" 'assets/img/avatar' + contact.avatar + '.jpg'" alt=" 'avatar'+contact.avatar ">
               </div>
               <!-- * chat-text -->
               <div class="chat-text">
                 <h3 class="lead fw-normal m-0"> {{contact.name}} </h3>
-                <p class="lead"> {{ lastSentMex(i) }} </p>
+                <p class="lead"> {{ getLastSentMex(i) }} </p>
               </div>
-              <span class="lastMexTime">12:00</span>
+              <span class="lastMexTime"><!--  {{ getLastTimeMex(i) }} -->12:00 </span>
             </li>
           </ul>
         </div>
@@ -119,7 +119,7 @@
             <div class="img-profile">
               <img :src=" 'assets/img/avatar'+contacts[currentChat].avatar+'.jpg'" alt="avatar-1">
             </div>
-
+  
             <!-- * chat-name -->
             <div class="chat-name d-flex flex-column">
               <h3 class="lead fw-bold m-0"> {{contacts[currentChat].name}} </h3>
@@ -141,13 +141,12 @@
           <div class="content-mex">
 
             <div v-for="(mex,i) in contacts[currentChat].messages" class="message-row">
-              <div class="message"
-                :class=" [{ 'sent': mex.status === 'sent' }, {'received': mex.status === 'received'}] ">
+              <div class="message" :class=" [{ 'sent': mex.status === 'sent' }, {'received': mex.status === 'received'}] ">
                 <p class="text"> {{mex.message}} </p>
                 <span class="time">12:00</span>
               </div>
             </div>
-
+            
           </div>
         </div>
 
@@ -159,7 +158,7 @@
           </div>
 
           <div class="inputMessage d-flex justify-content-center ">
-            <input type="text" placeholder="Scrivi un messaggio">
+            <input type="text" placeholder="Scrivi un messaggio" v-model="inputText" @keyup.enter="sentMex()">
           </div>
 
           <div class="recordVocals ">
@@ -175,8 +174,6 @@
   </div>
 
   <script src="js/script.js"></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/luxon/3.1.0/luxon.js' integrity='sha512-mas9jHaog0obTpZqUHzxPlmPTwwP5clx2UJbdx+DxsCTy8l00hQjzMiJh9lSsqz8dcWSo3MKFZ3icgacn/0Naw==' crossorigin='anonymous'></script>
-
 </body>
 
 </html>
