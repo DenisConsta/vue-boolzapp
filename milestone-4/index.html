@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- * Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <!-- * JS Bundle Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+  <!-- * Bootstrap icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+  <!-- * Font Awesome -->
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css'
+    integrity='sha512-HHsOC+h3najWR7OKiGZtfhFIEzg5VRIPde0kB0bG2QRidTQqf+sbfcxCTB16AcFB93xMjnBIKE29/MjdzXE+qw=='
+    crossorigin='anonymous' />
+
+  <!-- * Custom CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- * VueJS -->
+  <script src=https://unpkg.com/vue@3></script>
+
+
+  <title>Boolzapp</title>
+</head>
+
+<body>
+
+  <div class="fluid-container main-wrapper d-flex justify-content-center align-items-center">
+
+    <div id="app" class="d-flex ">
+      <!-- ? Contacts -->
+      <div id="contacts" class="d-flex flex-column ">
+        <!-- ? Account -->
+        <div id="account" class="d-flex justify-content-between align-items-center  ">
+
+          <!-- * left-acc -->
+          <div class="left-acc d-flex align-items-center gap-2">
+            <!-- * img-profile -->
+            <div class="img-profile">
+              <img src="assets/img/avatar_io.jpg" alt="my-Avatar">
+            </div>
+
+            <!-- * accountName -->
+            <span class="accountName fw-bold">Sofia</span>
+          </div>
+
+          <!-- * right-acc -->
+          <div class="right-acc d-flex gap-2">
+            <i class="fa-solid fa-circle-notch"></i>
+            <i class="fa-solid fa-message"></i>
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+          </div>
+        </div>
+
+        <!-- ? Notification -->
+        <div class="notification  d-flex align-items-center">
+          <!-- * icon-not -->
+          <div class="icon-not">
+            <i class="fa-solid fa-bell-slash"></i>
+          </div>
+          <!-- * text-not -->
+          <div class="text-not d-flex flex-column ">
+            <h4 class="lead fw-normal m-0">Ricevi notifiche di nuovi messaggi</h4>
+            <span class="text-decoration-underline">Attiva notifiche desktop</span>
+          </div>
+        </div>
+
+        <!-- ? SearchChat -->
+        <div class="searchChat ">
+          <div class="input-group ">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Cerca o inizia una nuova chat" @keyup="searchContact()" v-model="inputContact">
+          </div>
+
+        </div>
+
+        <!-- ? RecentChats -->
+        <div class="recentChats  ">
+          <!-- ? ChatsWrapper -->
+          <ul class="chatsWrapper m-0">
+            <!-- ? Chat -->
+            <li v-for="(contact, i) in contacts" 
+            class="chat d-flex align-items-center" :class=" [{'active' : currentChat === i}, {'d-none' : !isThisContact(i)}] " 
+            @click.stop="currentChat = i">
+              <div class="img-profile">
+                <img :src=" 'assets/img/avatar' + contact.avatar + '.jpg'" alt=" 'avatar'+contact.avatar ">
+              </div>
+              <!-- * chat-text -->
+              <div class="chat-text">
+                <h3 class="lead fw-normal m-0"> {{contact.name}} </h3>
+                <p class="lead"> {{ getLastSentMex(i) }} </p>
+              </div>
+              <span class="lastMexTime"><!--  {{ getLastTimeMex(i) }} -->12:00 </span>
+            </li>
+          </ul>
+        </div>
+
+
+      </div>
+
+      <!-- ? ChatViewer -->
+      <div id="chatViewer" class="d-flex flex-column ">
+        <!-- ? topChatViewer  -->
+        <div class="topChatViewer d-flex justify-content-between align-items-center ">
+          <!-- * chat-info -->
+          <div class="chat-info d-flex gap-2 align-items-center">
+            <!-- * profile img -->
+            <div class="img-profile">
+              <img :src=" 'assets/img/avatar'+contacts[currentChat].avatar+'.jpg'" alt="avatar-1">
+            </div>
+  
+            <!-- * chat-name -->
+            <div class="chat-name d-flex flex-column">
+              <h3 class="lead fw-bold m-0"> {{contacts[currentChat].name}} </h3>
+              <span class="lastAccess">ultimo accesso oggi alle 12:00</span>
+            </div>
+
+          </div>
+
+          <!-- * chat-options -->
+          <div class="chat-options d-flex gap-2">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="fa-solid fa-paperclip"></i>
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+          </div>
+        </div>
+
+        <!-- ? chatMessages-->
+        <div class="chatMessages  d-flex flex-column">
+          <div class="content-mex">
+
+            <div v-for="(mex,i) in contacts[currentChat].messages" class="message-row">
+              <div class="message" :class=" [{ 'sent': mex.status === 'sent' }, {'received': mex.status === 'received'}] ">
+                <p class="text"> {{mex.message}} </p>
+                <span class="time">12:00</span>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+
+        <!-- ? bottomChatViewer -->
+        <div class="bottomChatViewer d-flex justify-content-between align-items-center ">
+
+          <div class="emoji ">
+            <i class="fa-regular fa-face-smile"></i>
+          </div>
+
+          <div class="inputMessage d-flex justify-content-center ">
+            <input type="text" placeholder="Scrivi un messaggio" v-model="inputText" @keyup.enter="sentMex()">
+          </div>
+
+          <div class="recordVocals ">
+            <i class="fa-solid fa-microphone"></i>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>
