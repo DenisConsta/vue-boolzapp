@@ -2,124 +2,147 @@
 
 /* * General */
 
-:root{
+:root {
   --color-primary: #009688;
   --color-secondary: #DCDBD2;
   --color-default: #EAEAEA;
   --color-blue: #8EDAFC;
   --color-green: #D5F9BA;
   --color-white: #FAFAFA;
+  --color-text: #B1B1B1;
 }
 
-body{
+body {
   font-family: 'Lato', sans-serif;
 }
 
 /* * utilities */
-.debug{
+.debug {
   border: 1px solid firebrick;
   background-color: bisque;
 }
 
 /* ? Backgroud */
-#myBackground{
+#myBackground {
   position: fixed;
-  top:0;
-  bottom:0;
+  top: 0;
+  bottom: 0;
   left: 0;
   right: 0;
   z-index: -1;
 }
 
-.topBack{
+.topBack {
   height: 15%;
   background-color: var(--color-primary);
 }
 
-.bottomBack{
+.bottomBack {
   height: 85%;
   background-color: var(--color-secondary);
 }
 
-.main-wrapper{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.main-wrapper {
   min-height: 100vh;
 }
 
 /* ? app */
-#app{
+#app {
   min-height: 95vh;
   min-width: 1000px;
   width: 80%;
-  display: flex;
 }
 
 /* ? Contacts */
-#contacts{
+#contacts {
   width: 40%;
 }
 
 /* ? Account */
-#account{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
+#account {
+  padding: .6rem;
   background-color: var(--color-default);
 }
 
 /* todo left */
-.left{
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
 
-.img-profile img{
+.img-profile img {
   height: 50px;
   border-radius: 50%;
 }
 
 /* todo right */
-.right{
-  display: flex;
-  gap: 10px;
+.right-acc {
   margin-right: 10px;
   font-size: 1.3rem;
-  color: #B1B1B1;
+  color: var(--color-text);
 }
 
-.right i{
+.right-acc i {
   cursor: pointer;
-  padding: 5px;
+  padding: .4rem;
   transition: .3s;
 }
 
-.right i:hover{
+.right-acc i:hover {
   color: #575656;
 }
 
 /* ? Notification */
-.notification{
+.notification {
   background-color: var(--color-blue);
-  height: 100px;
+  padding: 1.2rem;
+}
+
+.icon-not {
+  background-color: #F2FBFF;
+  font-size: 1.5rem;
+  color: var(--color-blue);
+  padding: .8rem 1rem;
+  border-radius: 50%;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.icon-not:hover{
+  background-color:#575656;
+}
+
+.text-not > span{
+  color: #575656;
+  cursor: pointer;
 }
 
 /* ? ChatViewer */
-#chatViewer{
+#chatViewer {
   width: 60%;
 }
 
 /* ? SearchChat */
-.searchChat{
+.searchChat {
   background-color: var(--color-white);
-  height: 50px;
+  padding: .5rem;
 }
 
+/* * searchBar */
+
+.input-group-prepend,
+.input-group-text{
+  /* ! rivedere */
+  height: 40px;
+  transition: .3s;
+  cursor: pointer;
+}
+
+.input-group-text:hover{
+  background-color: #575656;
+  color: var(--color-white);
+}
+
+
 /* ? recentChats */
-.recentChats{
+.recentChats {
   height: 500px;
   background-color: var(--color-white);
 }

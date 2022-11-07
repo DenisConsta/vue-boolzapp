@@ -35,22 +35,22 @@
 
 <body>
 
-  <div class="fluid-container main-wrapper">
+  <div class="fluid-container main-wrapper d-flex justify-content-center align-items-center">
     <!-- ? backgroud -->
     <div id="myBackground">
       <div class="topBack"></div>
       <div class="bottomBack"></div>
     </div>
 
-    <div id="app" class="debug">
+    <div id="app" class="d-flex debug">
       <!-- ? Contacts -->
       <div id="contacts" class="debug">
 
         <!-- ? Account -->
-        <div id="account" class="debug">
+        <div id="account" class="d-flex justify-content-between align-items-center debug ">
 
-          <!-- * left -->
-          <div class="left">
+          <!-- * left-acc -->
+          <div class="left-acc d-flex align-items-center gap-2">
             <!-- * img-profile -->
             <div class="img-profile">
               <img src="assets/img/avatar_io.jpg" alt="my-Avatar">
@@ -60,8 +60,8 @@
             <span class="accountName fw-bold">Sofia</span>
           </div>
           
-          <!-- * right -->
-          <div class="right">
+          <!-- * right-acc -->
+          <div class="right-acc d-flex gap-2">
             <i class="fa-solid fa-circle-notch"></i>
             <i class="fa-solid fa-message"></i>
             <i class="fa-solid fa-ellipsis-vertical"></i>
@@ -69,12 +69,27 @@
         </div>
 
         <!-- ? Notification -->
-        <div class="notification debug">
-
+        <div class="notification debug d-flex align-items-center">
+          <!-- * icon-not -->
+          <div class="icon-not">
+            <i class="fa-solid fa-bell-slash"></i>
+          </div>
+          <!-- * text-not -->
+          <div class="text-not d-flex flex-column ">
+            <h4 class="lead fw-normal m-0">Ricevi notifiche di nuovi messaggi</h4>
+            <span class="text-decoration-underline">Attiva notifiche desktop</span>
+          </div>
         </div>
 
         <!-- ? SearchChat -->
         <div class="searchChat debug">
+          
+          <div class="input-group ">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Cerca o inizia una nuova chat">
+          </div>
           
         </div>
 
