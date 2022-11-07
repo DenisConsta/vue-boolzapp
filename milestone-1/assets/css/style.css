@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+
+/* * General */
+
+:root{
+  --color-primary: #009688;
+  --color-secondary: #DCDBD2;
+  --color-default: #EAEAEA;
+  --color-blue: #8EDAFC;
+  --color-green: #D5F9BA;
+}
+
+body{
+  font-family: 'Lato', sans-serif;
+}
+
+/* * utilities */
+.debug{
+  border: 1px solid firebrick;
+  background-color: bisque;
+}
+
+/* ? Backgroud */
+#myBackground{
+  position: fixed;
+  top:0;
+  bottom:0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+
+.topBack{
+  height: 20%;
+  background-color: var(--color-primary);
+}
+
+.bottomBack{
+  height: 80%;
+  background-color: var(--color-secondary);
+}
+
+.main-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* ? content */
+#content{
+  min-height: 95vh;
+
+}
