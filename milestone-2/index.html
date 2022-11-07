@@ -77,7 +77,6 @@
 
         <!-- ? SearchChat -->
         <div class="searchChat ">
-
           <div class="input-group ">
             <div class="input-group-prepend">
               <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
@@ -100,12 +99,10 @@
               <!-- * chat-text -->
               <div class="chat-text">
                 <h3 class="lead fw-normal m-0"> {{contact.name}} </h3>
-                <p class="lead">Ultimo messaggio inviato</p>
+                <p class="lead"> {{ lastSentMex(i) }} </p>
               </div>
               <span class="lastMexTime">12:00</span>
             </li>
-
-
           </ul>
         </div>
 
@@ -120,12 +117,12 @@
           <div class="chat-info d-flex gap-2 align-items-center">
             <!-- * profile img -->
             <div class="img-profile">
-              <img src="assets/img/avatar_1.jpg" alt="avatar-1">
+              <img :src=" 'assets/img/avatar'+contacts[currentChat].avatar+'.jpg'" alt="avatar-1">
             </div>
   
             <!-- * chat-name -->
             <div class="chat-name d-flex flex-column">
-              <h3 class="lead fw-bold m-0">Michele</h3>
+              <h3 class="lead fw-bold m-0"> {{contacts[currentChat].name}} </h3>
               <span class="lastAccess">ultimo accesso oggi alle 12:00</span>
             </div>
 
@@ -143,21 +140,13 @@
         <div class="chatMessages  d-flex flex-column">
           <div class="content-mex">
 
-            <div class="message-row">
-              <div class="message received ">
-                <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus ipsum, eligendi minus dicta accusamus earum debitis quasi iste? Tenetur beatae eius harum ratione sequi quam repellat ullam dolorum! Veniam, ipsam.</p>
+            <div v-for="(mex,i) in contacts[currentChat].messages" class="message-row">
+              <div class="message" :class=" [{ 'sent': mex.status === 'sent' }, {'received': mex.status === 'received'}] ">
+                <p class="text"> {{mex.message}} </p>
                 <span class="time">12:00</span>
               </div>
             </div>
             
-            <div class="message-row">
-              <div class="message sent ">
-                <p class="text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab nulla voluptate rem harum, ex laudantium enim quam a at maiores laborum tempore eius reiciendis possimus sapiente! Dignissimos temporibus architecto dicta?</p>
-                <span class="time">12:00</span>
-              </div>
-            </div>
-
-
           </div>
         </div>
 

@@ -57,6 +57,9 @@ createApp({
     }
   },
   methods: {
-
+    lastSentMex(index){
+      const mex = this.contacts[index].messages;
+      return mex[mex.length-1].message;
+    }
   }
 }).mount('#app');
