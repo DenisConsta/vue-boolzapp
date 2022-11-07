@@ -43,10 +43,12 @@ body {
 #contacts {
   width: 35%;
   background-color: var(--color-white);
+  border-right: 1px solid #B1B1B1;
 }
 
 /* ? Account */
-#account {
+#account,
+.topChatViewer {
   padding: .6rem;
   background-color: var(--color-default);
 }
@@ -58,20 +60,23 @@ body {
 }
 
 /* todo right */
-.right-acc {
+.right-acc,
+.chat-options {
   margin-right: 10px;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   color: var(--color-text);
 }
 
-.right-acc i {
+.right-acc i,
+.chat-options i {
   cursor: pointer;
   padding: .4rem;
   transition: .3s;
 }
 
-.right-acc i:hover {
-  color: #575656;
+.right-acc i:hover,
+.chat-options i:hover {
+  color: var(--color-primary);
 }
 
 /* ? Notification */
@@ -92,17 +97,12 @@ body {
 }
 
 .icon-not:hover {
-  background-color: #575656;
+  background-color: var(--color-primary);
 }
 
 .text-not>span {
   color: #575656;
   cursor: pointer;
-}
-
-/* ? ChatViewer */
-#chatViewer {
-  width: 65%;
 }
 
 /* ? SearchChat */
@@ -167,4 +167,94 @@ body {
   font-size: .7rem;
   position: absolute;
   right: 1rem;
+}
+
+/* ? ChatViewer */
+#chatViewer {
+  width: 65%;
+}
+
+#chatViewer .chat-name h3 {
+  font-size: 1rem;
+}
+
+#chatViewer .chat-name span {
+  font-size: .85rem;
+  color: #575656;
+}
+
+/* ? chatMessages */
+.chatMessages {
+  background-image: url('../img/mine.jpg');
+  padding: 2rem;
+  overflow-y: auto;
+
+  /* ! */
+  height: calc(100% - 135.6px);
+}
+
+/* ? bottomChatViewer */
+.bottomChatViewer {
+  padding: .65rem 1.2rem;
+  background-color: #F3EEEA;
+}
+
+.bottomChatViewer i {
+  font-size: 1.5rem;
+  color: #6B7376;
+  cursor: pointer;
+  margin: .4rem;
+  transition: .3s;
+}
+
+.bottomChatViewer i:hover {
+  color: var(--color-primary);
+
+}
+
+.inputMessage {
+  width: 100%;
+}
+
+.inputMessage input {
+  width: 95%;
+  border: none;
+  padding: .7rem .5rem;
+  border-radius: .5rem;
+}
+
+.message-row {
+  width: 100%;
+  display: inline-block;
+  padding: .5rem 0;
+}
+
+.message {
+  max-width: 400px;
+  min-width: 200px;
+  padding: 1rem;
+  border-radius: 1rem;
+  position: relative;
+  display: inline-block;
+}
+
+.message .text{
+  margin: 0;
+}
+
+.message .time {
+  position: absolute;
+  font-size: .7rem;
+  bottom: .4rem;
+  right: .7rem;
+}
+
+.message.sent {
+  background-color: var(--color-green);
+  float: right;
+}
+
+.message.received {
+  background-color: #ffffff;
+  float: left;
 }
