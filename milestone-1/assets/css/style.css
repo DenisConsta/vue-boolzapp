@@ -8,6 +8,7 @@
   --color-default: #EAEAEA;
   --color-blue: #8EDAFC;
   --color-green: #D5F9BA;
+  --color-white: #FAFAFA;
 }
 
 body{
@@ -31,12 +32,12 @@ body{
 }
 
 .topBack{
-  height: 20%;
+  height: 15%;
   background-color: var(--color-primary);
 }
 
 .bottomBack{
-  height: 80%;
+  height: 85%;
   background-color: var(--color-secondary);
 }
 
@@ -47,8 +48,78 @@ body{
   min-height: 100vh;
 }
 
-/* ? content */
-#content{
+/* ? app */
+#app{
   min-height: 95vh;
+  min-width: 1000px;
+  width: 80%;
+  display: flex;
+}
 
+/* ? Contacts */
+#contacts{
+  width: 40%;
+}
+
+/* ? Account */
+#account{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: var(--color-default);
+}
+
+/* todo left */
+.left{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.img-profile img{
+  height: 50px;
+  border-radius: 50%;
+}
+
+/* todo right */
+.right{
+  display: flex;
+  gap: 10px;
+  margin-right: 10px;
+  font-size: 1.3rem;
+  color: #B1B1B1;
+}
+
+.right i{
+  cursor: pointer;
+  padding: 5px;
+  transition: .3s;
+}
+
+.right i:hover{
+  color: #575656;
+}
+
+/* ? Notification */
+.notification{
+  background-color: var(--color-blue);
+  height: 100px;
+}
+
+/* ? ChatViewer */
+#chatViewer{
+  width: 60%;
+}
+
+/* ? SearchChat */
+.searchChat{
+  background-color: var(--color-white);
+  height: 50px;
+}
+
+/* ? recentChats */
+.recentChats{
+  height: 500px;
+  background-color: var(--color-white);
 }
