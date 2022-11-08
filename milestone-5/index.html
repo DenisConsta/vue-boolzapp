@@ -100,12 +100,13 @@
               <!-- * chat-text -->
               <div class="chat-text">
                 <h3 class="lead fw-normal m-0"> {{contact.name}} </h3>
-                <p class="lead"> {{ getLastSentMex(i) }} </p>
+                <p class="lead"> {{ textLengthCheck(getLastSentMex(i)) }} </p>
               </div>
               <span class="lastMexTime"> {{ getLastTimeMex(i) }} </span>
             </li>
           </ul>
         </div>
+
 
       </div>
 
@@ -130,8 +131,9 @@
 
           <!-- * chat-options -->
           <div class="chat-options d-flex gap-2">
-            <input type="text" class="searchMex" :class="{'d-none' : !magnifyingGlassActive}" @keyup="searchMessage()" v-model="inputSearchMex">
-            <i class="fa-solid fa-magnifying-glass" @click.stop=" magnifyingGlassActive = !magnifyingGlassActive "></i>
+            <input  type="text" class="searchMex" :class="{'d-none' : !magnifyingGlassActive}" 
+            @keyup="searchMessage()" v-model="inputSearchMex" >
+            <i class="fa-solid fa-magnifying-glass cercaMex" @click.stop=" magnifyingGlassActive = !magnifyingGlassActive "></i>
             <i class="fa-solid fa-paperclip"></i>
             <i class="fa-solid fa-ellipsis-vertical"></i>
           </div>

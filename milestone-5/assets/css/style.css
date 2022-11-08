@@ -162,7 +162,7 @@ body {
 .chat-text p {
   font-size: .85rem;
   padding-right: 2rem;
-  text-overflow: clip;
+  text-overflow: ellipsis;
 }
 
 .lastMexTime {
@@ -191,8 +191,6 @@ body {
   padding-left: 1rem;
   font-size: .85rem;
 }
-
-
 
 /* ? chatMessages */
 .chatMessages {

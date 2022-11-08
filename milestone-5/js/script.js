@@ -178,6 +178,20 @@ createApp({
       const arr = Array.prototype.slice.call(this.contacts[this.currentChat].messages);
       if (index > -1) arr.splice(index, 1);
       this.contacts[this.currentChat].messages = arr;
+    },
+    //? se la lunghezza del mex supera limit ritorna il messaggio abbreviato
+    textLengthCheck(text) {
+      const limit = 30;
+      if (text.length > limit)
+        return text.substring(0, limit - 1) + "...";
+      else return text;
     }
   }
 }).mount('#app');
+
+//? focus sull'input di ricerca del messaggio 
+const btn = document.querySelector('.cercaMex');
+const input = document.querySelector('.searchMex');
+btn.addEventListener('click', function(){
+  input.focus();
+})
