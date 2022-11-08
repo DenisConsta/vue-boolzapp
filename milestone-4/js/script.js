@@ -1,5 +1,7 @@
 
+
 const { createApp } = Vue;
+
 
 createApp({
   data() {
@@ -56,59 +58,89 @@ createApp({
       currentChat: 0,
       inputText: '',
       inputContact: '',
-      contactSearch:{
+      contactSearch: {
         active: false,
         names: []
-      } ,
+      },
+
 
     }
   },
   methods: {
+    //? restituisce l'ultimo messaggio del contatto
     getLastSentMex(index) {
       const mex = this.contacts[index].messages;
       return mex[mex.length - 1].message;
     },
+    //? restituisce l'ora dell'ultimo mex in formato hh:mm
     getLastTimeMex(index) {
       const mex = this.contacts[index].messages;
-      const time = mex[mex.length - 1].date;
-      //!
-      return time;
+      let time = mex[mex.length - 1].date;
+
+      let output = luxon.DateTime.fromFormat(time, "D hh:mm:ss", { locale: "it-IT" }).toISO();
+      let final = luxon.DateTime.fromISO(output, 'h:mm');
+      return final.hour + ":" + final.minute;
+
+      /*  return(final.day+ "/"+final.month+"/"+final.year+ " "+ final.hour+":"+final.minute);  */
     },
+    //? restituisce l'ora di un determinato mex in formato hh:mm
+    getTime(message) {
+      let output = luxon.DateTime.fromFormat(message.date, "D hh:mm:ss", { locale: "it-IT" }).toISO();
+      let final = luxon.DateTime.fromISO(output, 'h:mm');
+      return final.hour + ":" + final.minute;
+    },
+    //? restituisce la data attuale in formato stringa
+    getNowString(){
+      const now = new Date();
+      let finalDate = this.adjustTime(now.getMonth()) + '/' + this.adjustTime(now.getUTCDate()) + '/' + now.getFullYear() + ' ' + this.adjustTime(now.getHours() )+ ':' + this.adjustTime(now.getMinutes()) + ':' + this.adjustTime(now.getSeconds());
+      console.log(finalDate);
+      return finalDate;
+    },
+    //? aggiusta il tempo inferiore a 10 per renderlo compatibile 
+    adjustTime(time) {
+      if (time < 10) return '0' + time;
+      else return time;
+    },
+    //? inserimento del mex dell'utente
     sentMex() {
-      const mex = {
-        date: new Date(),
-        message: this.inputText,
-        status: 'sent'
+      if(this.inputText !== ''){
+        const mex = {
+          date: this.getNowString(),
+          message: this.inputText,
+          status: 'sent'
+        }
+        this.contacts[this.currentChat].messages.push(mex);
+        this.inputText = '';
+        this.replyMex();
       }
-      this.contacts[this.currentChat].messages.push(mex);
-      this.inputText = '';
-      this.replyMex();
     },
+    //? risposta automatica al mex dopo 1s
     replyMex() {
       setTimeout(() => {
         const mex = {
-          date: new Date(),
+          date: this.getNowString(),
           message: 'OK :)',
           status: 'received'
         }
         this.contacts[this.currentChat].messages.push(mex);
       }, 1000);
     },
+    //? passsa in rassegna tutti i contatti che includono la sottostringa inserita e li inserisce in un array
     searchContact() {
       this.contactSearch.names = [];
       if (this.inputContact != '') {
         this.contactSearch.active = true;
         this.contacts.forEach(contact => {
-          if (contact.name.includes(this.inputContact))
+          if (contact.name.toLowerCase().includes(this.inputContact.toLowerCase()))
             this.contactSearch.names.push(contact.name);
         });
       }
       else this.contactSearch.active = false;
     },
-
+    //? controlla se si tratta di questo contatto 
     isThisContact(index) {
-      if(!this.contactSearch.active)  return true;
-      else if(this.contactSearch.names.includes(this.contacts[index].name)) return true;
+      if (!this.contactSearch.active) return true;
+      else if (this.contactSearch.names.includes(this.contacts[index].name)) return true;
       else return false;
     }
   }
