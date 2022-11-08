@@ -62,8 +62,13 @@ createApp({
         active: false,
         names: []
       },
-
-
+      messageSearch: {
+        active: false,
+        messages: []
+      },
+      inputSearchMex: '',
+      notificationActive: true,
+      magnifyingGlassActive: false
     }
   },
   methods: {
@@ -85,7 +90,7 @@ createApp({
         let output = luxon.DateTime.fromFormat(time, "D hh:mm:ss", { locale: "it-IT" }).toISO();
         let final = luxon.DateTime.fromISO(output, 'h:mm');
         return final.hour + ":" + final.minute;
-      }else return '12:00';
+      } else return '12:00';
 
 
       /*  return(final.day+ "/"+final.month+"/"+final.year+ " "+ final.hour+":"+final.minute);  */
@@ -100,7 +105,6 @@ createApp({
     getNowString() {
       const now = new Date();
       let finalDate = this.adjustTime(now.getMonth()) + '/' + this.adjustTime(now.getUTCDate()) + '/' + now.getFullYear() + ' ' + this.adjustTime(now.getHours()) + ':' + this.adjustTime(now.getMinutes()) + ':' + this.adjustTime(now.getSeconds());
-      console.log(finalDate);
       return finalDate;
     },
     //? aggiusta il tempo inferiore a 10 per renderlo compatibile 
@@ -144,10 +148,29 @@ createApp({
       }
       else this.contactSearch.active = false;
     },
+    //? passsa in rassegna tutti i messaggi che includono la sottostringa inserita e li inserisce in un array
+    searchMessage() {
+      this.messageSearch.messages = [];
+      if (this.inputSearchMex != '') {
+        this.messageSearch.active = true;
+        this.contacts[this.currentChat].messages.forEach(mex => {
+          if (mex.message.toLowerCase().includes(this.inputSearchMex.toLowerCase())) {
+            this.messageSearch.messages.push(mex.message);
+          }
+        })
+      }
+      else this.messageSearch.active = false;
+    },
     //? controlla se si tratta di questo contatto 
     isThisContact(index) {
       if (!this.contactSearch.active) return true;
       else if (this.contactSearch.names.includes(this.contacts[index].name)) return true;
+      else return false;
+    },
+    //? controlla se si tratta di questo messaggio
+    isThisMessage(index) {
+      if (!this.messageSearch.active) return false;
+      else if (this.messageSearch.messages.includes(this.contacts[this.currentChat].messages[index].message)) return true;
       else return false;
     },
     //? elimina il messaggio relativo

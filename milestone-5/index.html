@@ -63,9 +63,9 @@
         </div>
 
         <!-- ? Notification -->
-        <div class="notification  d-flex align-items-center">
+        <div class="notification  d-flex align-items-center" :class="{'d-none' : !notificationActive}">
           <!-- * icon-not -->
-          <div class="icon-not">
+          <div class="icon-not" @click="notificationActive = false">
             <i class="fa-solid fa-bell-slash"></i>
           </div>
           <!-- * text-not -->
@@ -93,7 +93,7 @@
             <!-- ? Chat -->
             <li v-for="(contact, i) in contacts" 
             class="chat d-flex align-items-center" :class=" [{'active' : currentChat === i}, {'d-none' : !isThisContact(i)}] " 
-            @click.stop="currentChat = i">
+            @click.stop="currentChat = i; magnifyingGlassActive = false">
               <div class="img-profile">
                 <img :src=" 'assets/img/avatar' + contact.avatar + '.jpg'" alt=" 'avatar'+contact.avatar ">
               </div>
@@ -106,7 +106,6 @@
             </li>
           </ul>
         </div>
-
 
       </div>
 
@@ -131,7 +130,8 @@
 
           <!-- * chat-options -->
           <div class="chat-options d-flex gap-2">
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" class="searchMex" :class="{'d-none' : !magnifyingGlassActive}" @keyup="searchMessage()" v-model="inputSearchMex">
+            <i class="fa-solid fa-magnifying-glass" @click.stop=" magnifyingGlassActive = !magnifyingGlassActive "></i>
             <i class="fa-solid fa-paperclip"></i>
             <i class="fa-solid fa-ellipsis-vertical"></i>
           </div>
@@ -141,8 +141,8 @@
         <div class="chatMessages  d-flex flex-column">
           <div class="content-mex">
 
-            <div v-for="(mex,i) in contacts[currentChat].messages" class="message-row">
-              <div class="message" :class=" [{ 'sent': mex.status === 'sent' }, {'received': mex.status === 'received'}] ">
+            <div v-for="(mex,i) in contacts[currentChat].messages" class="message-row" :class="{'find-message' : isThisMessage(i)}">
+              <div class="message " :class=" [{ 'sent': mex.status === 'sent' }, {'received': mex.status === 'received'}] ">
                 <p class="text"> {{mex.message}} </p>
                 <span class="time"> {{getTime(mex)}} </span>
 
