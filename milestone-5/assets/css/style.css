@@ -102,7 +102,6 @@ body {
 
 .text-not>span {
   color: #575656;
-  cursor: pointer;
 }
 
 /* ? SearchChat */
@@ -163,7 +162,7 @@ body {
 .chat-text p {
   font-size: .85rem;
   padding-right: 2rem;
-  text-overflow:clip;
+  text-overflow: clip;
 }
 
 .lastMexTime {
@@ -212,7 +211,6 @@ body {
 
 .bottomChatViewer i:hover {
   color: var(--color-primary);
-
 }
 
 .inputMessage {
@@ -241,7 +239,29 @@ body {
   display: inline-block;
 }
 
-.message .text{
+.dropdown {
+  display: none;
+  position: absolute;
+  right: .5rem;
+  top: 0;
+}
+
+.more-options {
+  color: #949292;
+  cursor: pointer;
+  padding: .4rem;
+}
+
+.message:hover .dropdown {
+  display: block;
+}
+
+.dropdown-item{
+  cursor: pointer;
+}
+
+
+.message .text {
   margin: 0;
   padding-bottom: .3rem;
   padding-right: 2rem;
