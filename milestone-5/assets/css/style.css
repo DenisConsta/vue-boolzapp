@@ -51,6 +51,7 @@ body {
 .topChatViewer {
   padding: .6rem;
   background-color: var(--color-default);
+  z-index: 2;
 }
 
 /* todo left */
@@ -218,6 +219,21 @@ body {
 
 .bottomChatViewer i:hover {
   color: var(--color-primary);
+}
+
+.emojiList{
+  max-width: 300px;
+  bottom: 100px;
+  position: absolute;
+  background-color: var(--color-default);
+  padding: 1rem;
+  border-radius: 1rem;
+  z-index: 1;
+}
+
+.emojiList li span{
+  padding: .25rem;
+  cursor: pointer;
 }
 
 .inputMessage {

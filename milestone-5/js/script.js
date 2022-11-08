@@ -68,7 +68,14 @@ createApp({
       },
       inputSearchMex: '',
       notificationActive: true,
-      magnifyingGlassActive: false
+      magnifyingGlassActive: false,
+      emojiActive: false,
+      emojiList: [
+        '&#129409;',
+        '&#128516;',
+        '&#128525;',
+        '&#128151;'
+      ]
     }
   },
   methods: {
