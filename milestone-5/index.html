@@ -166,22 +166,19 @@
         <div class="bottomChatViewer d-flex justify-content-between align-items-center ">
 
           <div class="emoji ">
-            <i class="fa-regular fa-face-smile" @click.stop="emojiActive = !emojiActive"></i>
+            <i class="fa-regular fa-face-smile" @click.stop="emojiActive = !emojiActive; "></i>
             <div class="emojiList" v-if="emojiActive">
               <ul class="list-unstyled d-flex flex-wrap gap-1 m-0">
-                <li><span class="" @click="inputText+= '&#129409;' ">&#129409;</span></li>
-                <li><span @click="inputText+= '&#128516;'" >&#128516;</span></li>
-                <li><span @click="inputText+= '&#128525;'" >&#128525;</span></li>
-                <li><span @click="inputText+= '&#128151;'">&#128151;</span></li>
-              <!-- <li v-for="emoji in emojiList">
-                <span> {{emoji}} </span>
-              </li> -->
+
+              <li v-for="emoji in emojiList" >
+                <span @click.stop ="inputText+=emoji; "> {{emoji}} </span>
+              </li>
               </ul>
             </div>
           </div>
 
           <div class="inputMessage d-flex justify-content-center ">
-            <input type="text" placeholder="Scrivi un messaggio" v-model="inputText" @keyup.enter="sentMex();emojiActive=false">
+            <input type="text" placeholder="Scrivi un messaggio" v-model="inputText" @keyup.enter="sentMex();emojiActive=false" >
           </div>
 
           <div class="recordVocals ">

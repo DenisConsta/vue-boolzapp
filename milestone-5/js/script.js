@@ -71,10 +71,24 @@ createApp({
       magnifyingGlassActive: false,
       emojiActive: false,
       emojiList: [
-        '&#129409;',
-        '&#128516;',
-        '&#128525;',
-        '&#128151;'
+        '🦁',
+        '😀',
+        '😃',
+        '😄',
+        '😁',
+        '😆',
+        '😅',
+        '😂',
+        '🤣',
+        '😊',
+        '😇',
+        '🙂',
+        '🙃',
+        '😉',
+        '😌',
+        '😍',
+        '🥰',
+        '😘', '😗', '😙', '😚', '😋', '😛', '😝', '😜', '🤪', '🤨', '🧐', '🤓', '😎'
       ]
     }
   },
@@ -99,7 +113,7 @@ createApp({
         return final.hour + ":" + final.minute;
       } else return '12:00';
 
-
+      /* data.setLocale('it').toLocale.String(DateTime.DATAETIME_SHORT_WITH_SECONDS)); */
       /*  return(final.day+ "/"+final.month+"/"+final.year+ " "+ final.hour+":"+final.minute);  */
     },
     //? restituisce l'ora di un determinato mex in formato hh:mm
@@ -127,6 +141,7 @@ createApp({
           message: this.inputText,
           status: 'sent'
         }
+        console.log(mex);
         this.contacts[this.currentChat].messages.push(mex);
         this.inputText = '';
         this.replyMex();
@@ -192,6 +207,9 @@ createApp({
       if (text.length > limit)
         return text.substring(0, limit - 1) + "...";
       else return text;
+    },
+    activeFocusInput() {
+      document.querySelector('.inputMessage input').focus();
     }
   }
 }).mount('#app');
@@ -199,6 +217,6 @@ createApp({
 //? focus sull'input di ricerca del messaggio 
 const btn = document.querySelector('.cercaMex');
 const input = document.querySelector('.searchMex');
-btn.addEventListener('click', function(){
+btn.addEventListener('click', function () {
   input.focus();
 })
